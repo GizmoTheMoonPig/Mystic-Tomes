@@ -1,0 +1,131 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+def secrets = new Properties()
+def secretsFile = file('secrets.properties')
+if (secretsFile.exists()) {
+    secretsFile.withInputStream {
+        stream -> secrets.load(stream)
+    }
+
+    fileTree("secrets").matching {
+        include "**/*.properties"
+    }.each {
+        File file ->
+            file.withInputStream {
+                stream -> secrets.load(stream)
+            }
+    }
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+version = project.mod_version
+group = "com.gizmo.tomes"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:all,-classfile,-processing,-deprecation,-this-escape" << "-Werror"
+    options.encoding = 'UTF-8'
+}
+
+base {
+    archivesName = project.modid+'-'+project.minecraft_version
+}
+
+neoForge {
+    version = project.neo_version
+    validateAccessTransformers = true
+
+    mods {
+        "${project.modid}" {
+            it.sourceSet this.sourceSets.main
+        }
+    }
+
+    runs {
+        configureEach {
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+
+        client {
+            client()
+            if (secrets.getProperty("uuid")) {
+                programArguments.addAll(
+                    '--username', secrets.getProperty("username"),
+                    '--uuid', secrets.getProperty("uuid"),
+                    '--accessToken', "",
+                    '--xuid', ""
+                )
+            }
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+        }
+    }
+}
+
+repositories {
+	exclusiveContent {
+		forRepository {
+			maven {
+				url "https://cursemaven.com"
+			}
+		}
+		filter {
+			includeGroup "curse.maven"
+		}
+	}
+}
+
+dependencies {
+}
+
+processResources {
+    def ver = project.version
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand([
+            'file': [
+                'jarVersion': ver
+            ]
+        ])
+    }
+    def lazyTree = providers.provider {
+        fileTree(dir: getOutputs().getFiles().getAsPath(), includes: ["**/*.json", "**/*.mcmeta"])
+    }
+    doLast {
+        lazyTree.get().each {
+            File file -> file.setText(JsonOutput.toJson(new JsonSlurper().parse(file)))
+        }
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                "Specification-Title"     : "${project.modid}",
+                "Specification-Vendor"    : "GizmoTheMoonPig",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "GizmoTheMoonPig",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}

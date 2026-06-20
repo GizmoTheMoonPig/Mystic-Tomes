@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/gizmothemoonpig/Mystic-Tomes/issues"
+license = "MIT"
+
+[[mods]]
+modId = "mystictomes"
+version = "${file.jarVersion}"
+displayName = "Mystic Tomes"
+#displayURL = "https://www.curseforge.com/minecraft/mc-mods/mod-repo" TODO
+logoFile = "logo.png"
+authors = "GizmoTheMoonPig"
+description = 'Adds a new item called a Mystic Tome. They can be used to increase enchantment levels on items, allowing you to even surpass the normal level limits.'
+
+[[dependencies.mystictomes]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[21.1,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.mystictomes]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[1.21.1]"
+    ordering = "NONE"
+    side = "BOTH"

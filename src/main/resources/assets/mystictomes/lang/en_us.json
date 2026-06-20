@@ -1,0 +1,35 @@
+{
+  "item.mystictomes.mystic_tome": "Mystic Tome",
+  "item.mystictomes.mystic_tome.desc": "Combine with %s to increase its level (Max level: %s)",
+  "item.mystictomes.mystic_tome.desc_multiple": "Combine with any of the following enchantments to increase their level:",
+  "item.mystictomes.mystic_tomes.applicable_enchant": "%s (Max level: %s)",
+  "item.mystictomes.mystic_tome.any": "Combine with any enchantment to increase its level",
+
+  "mystictomes.configuration.title": "Mystic Tomes",
+  "mystictomes.configuration.section.mystictomes.common.toml": "Mystic Tomes",
+  "mystictomes.configuration.section.mystictomes.common.toml.title": "Mystic Tomes",
+
+  "config.mystictomes.tome_item_settings": "Tome-Item Settings",
+  "config.mystictomes.tome_item_settings.tooltip": "Settings for combining items and Mystic Tomes together",
+  "config.mystictomes.tome_item_settings.button": "Edit",
+  "config.mystictomes.wildcard_tome": "Enable Wildcard Tomes",
+  "config.mystictomes.wildcard_tome.tooltip": "If true, Mystic Tomes without an enchantment defined via the 'minecraft:stored_enchantments' data component will be considered a 'wildcard tome'.\nThese tomes will upgrade any and all allowed enchantments on a tool or book.",
+  "config.mystictomes.upgrade_cost": "Enchantment Upgrade Cost",
+  "config.mystictomes.upgrade_cost.tooltip": "Defines how many levels it should cost to upgrade an enchantment's level using a tome.",
+  "config.mystictomes.limit_break_cost": "Enchantment Limit Break Cost",
+  "config.mystictomes.limit_break_cost.tooltip": "Defines how many levels it should cost to limit break an enchantment's level using a tome.",
+  "config.mystictomes.add_repair_cost": "Add Repair Costs",
+  "config.mystictomes.add_repair_cost.tooltip": "If true, using a Mystic Tome on an item will add to its repair cost, meaning it will be more expensive to do future operations in an anvil.",
+  "config.mystictomes.max_limit_breaks": "Max Enchantment Limit Breaks",
+  "config.mystictomes.max_limit_breaks.tooltip": "Defines how many times an enchantment can go above its normal max level using a Mystic Tome.",
+
+  "config.mystictomes.tome_tome_settings": "Tome-Tome Settings",
+  "config.mystictomes.tome_tome_settings.tooltip": "Settings for combining multiple Mystic Tomes together",
+  "config.mystictomes.tome_tome_settings.button": "Edit",
+  "config.mystictomes.tome_combining": "Enable Tome Combining",
+  "config.mystictomes.tome_combining.tooltip": "If true, Mystic Tomes can be combined together in an anvil to stack their effects together in a single item.",
+  "config.mystictomes.combine_cost": "Tome Combination Cost",
+  "config.mystictomes.combine_cost.tooltip": "Defines how many levels it should cost to combine tomes together.",
+  "config.mystictomes.add_combine_repair_cost": "Add Repair Costs",
+  "config.mystictomes.add_combine_repair_cost.tooltip": "If true, combining Mystic Tomes will add to their repair cost, meaning it will be more expensive to do future operations in an anvil."
+}
