@@ -74,6 +74,16 @@ neoForge {
             }
         }
 
+		data {
+			data()
+			programArguments.addAll(
+				'--mod', modid,
+				'--all',
+				'--output', file('src/generated/resources/').getAbsolutePath(),
+				'--existing', file('src/main/resources/').getAbsolutePath()
+			)
+		}
+
         server {
             server()
             programArgument '--nogui'
@@ -81,21 +91,7 @@ neoForge {
     }
 }
 
-repositories {
-	exclusiveContent {
-		forRepository {
-			maven {
-				url "https://cursemaven.com"
-			}
-		}
-		filter {
-			includeGroup "curse.maven"
-		}
-	}
-}
-
-dependencies {
-}
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 processResources {
     def ver = project.version

@@ -1,0 +1,13 @@
+{
+  "type": "mystictomes:add_mystic_tome",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/trial_chambers/reward_ominous"
+    }
+  ],
+  "exclusions": [
+    "minecraft:soul_speed",
+    "minecraft:swift_sneak"
+  ]
+}

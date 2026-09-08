@@ -9,6 +9,15 @@
   "mystictomes.configuration.section.mystictomes.common.toml": "Mystic Tomes",
   "mystictomes.configuration.section.mystictomes.common.toml.title": "Mystic Tomes",
 
+  "config.mystictomes.default_loot_injections": "Generate in Loot Chests",
+  "config.mystictomes.default_loot_injections.tooltip": "If true, Mystic Tomes will automatically be injected into a bunch of vanilla loot tables via a builtin datapack.\nThis datapack can already be disabled or enabled on world creation, this config just specifies what the default state of the pack should be.\nIt's recommended to turn this off if you're adding your own loot injections.",
+  "config.mystictomes.max_level_librarian_trades": "Librarian Trades",
+  "config.mystictomes.max_level_librarian_trades.tooltip": "If true, max level librarians will generate up to 2 Mystic Tome trades.\nThese trades will require a max level book of the specified enchantment and a bunch of emeralds to make a tome.\nNOTE: in future versions this will become a data driven thing that will be included in a default datapack like the loot modifiers are.",
+  "config.mystictomes.wandering_trader_trades": "Wandering Trader Trades",
+  "config.mystictomes.wandering_trader_trades.tooltip": "Defines how many Mystic Tomes will generate as trades on wandering traders.\nThese trades will require a max level book of the specified enchantment and a bunch of emeralds to make a tome.\nNOTE: in future versions this will become a data driven thing that will be included in a default datapack like the loot modifiers are.",
+  "config.mystictomes.wandering_trader_wildcard_tome": "Wildcard Tome Trade",
+  "config.mystictomes.wandering_trader_wildcard_tome.tooltip": "If true, and if wildcard tomes are enabled, wandering traders will have a chance of selling one.",
+
   "config.mystictomes.tome_item_settings": "Tome-Item Settings",
   "config.mystictomes.tome_item_settings.tooltip": "Settings for combining items and Mystic Tomes together",
   "config.mystictomes.tome_item_settings.button": "Edit",
@@ -31,5 +40,7 @@
   "config.mystictomes.combine_cost": "Tome Combination Cost",
   "config.mystictomes.combine_cost.tooltip": "Defines how many levels it should cost to combine tomes together.",
   "config.mystictomes.add_combine_repair_cost": "Add Repair Costs",
-  "config.mystictomes.add_combine_repair_cost.tooltip": "If true, combining Mystic Tomes will add to their repair cost, meaning it will be more expensive to do future operations in an anvil."
+  "config.mystictomes.add_combine_repair_cost.tooltip": "If true, combining Mystic Tomes will add to their repair cost, meaning it will be more expensive to do future operations in an anvil.",
+
+  "datapack.mystictomes.default_loot.description": "Generates Mystic Tomes in various vanilla loot chests"
 }

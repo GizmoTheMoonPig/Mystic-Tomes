@@ -1,0 +1,18 @@
+{
+  "entries": [
+    "mystictomes:ancient_city",
+    "mystictomes:bastion",
+    "mystictomes:buried_treasure",
+    "mystictomes:desert_pyramid",
+    "mystictomes:dungeon",
+    "mystictomes:end_city",
+    "mystictomes:mansion",
+    "mystictomes:mineshaft",
+    "mystictomes:shipwreck",
+    "mystictomes:stronghold",
+    "mystictomes:trial_chamber_normal",
+    "mystictomes:trial_chamber_ominous",
+    "mystictomes:underwater_ruin"
+  ],
+  "replace": false
+}

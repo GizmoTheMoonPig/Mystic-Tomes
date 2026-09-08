@@ -1,0 +1,8 @@
+{
+  "pack": {
+    "description": {
+      "translate": "datapack.mystictomes.default_loot.description"
+    },
+    "pack_format": 48
+  }
+}

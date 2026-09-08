@@ -1,0 +1,11 @@
+{
+  "type": "mystictomes:add_mystic_tome",
+  "chance": 0.25,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/ancient_city"
+    }
+  ],
+  "options": "minecraft:swift_sneak"
+}

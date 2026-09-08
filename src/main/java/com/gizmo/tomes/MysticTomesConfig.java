@@ -5,6 +5,11 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class MysticTomesConfig {
 
+	public final ModConfigSpec.BooleanValue defaultLootInjections;
+	public final ModConfigSpec.BooleanValue maxLevelLibrarianTrades;
+	public final ModConfigSpec.IntValue wanderingTraderTrades;
+	public final ModConfigSpec.BooleanValue wanderingTraderWildcardTome;
+
 	public final ModConfigSpec.BooleanValue wildcardTome;
 	public final ModConfigSpec.IntValue upgradeCost;
 	public final ModConfigSpec.IntValue limitBreakCost;
@@ -19,6 +24,35 @@ public class MysticTomesConfig {
 	public static final MysticTomesConfig INSTANCE;
 
 	public MysticTomesConfig(ModConfigSpec.Builder builder) {
+
+		this.defaultLootInjections = builder
+			.translation("config.mystictomes.default_loot_injections")
+			.comment("""
+				If true, Mystic Tomes will automatically be injected into a bunch of vanilla loot tables via a builtin datapack.
+				This datapack can already be disabled or enabled on world creation, this config just specifies what the default state of the pack should be.
+				It's recommended to turn this off if you're adding your own loot injections.""")
+			.define("defaultLootInjections", true);
+
+		this.maxLevelLibrarianTrades = builder
+			.translation("config.mystictomes.max_level_librarian_trades")
+			.comment("""
+				If true, max level librarians will generate up to 2 Mystic Tome trades.
+				These trades will require a max level book of the specified enchantment and a bunch of emeralds to make a tome.
+				NOTE: in future versions this will become a data driven thing that will be included in a default datapack like the loot modifiers are.""")
+			.define("maxLevelLibrarianTrades", true);
+
+		this.wanderingTraderTrades = builder
+			.translation("config.mystictomes.wandering_trader_trades")
+			.comment("""
+				Defines how many Mystic Tomes will generate as trades on wandering traders.
+				These trades will require a max level book of the specified enchantment and a bunch of emeralds to make a tome.
+				NOTE: in future versions this will become a data driven thing that will be included in a default datapack like the loot modifiers are.""")
+			.defineInRange("wanderingTraderTrades", 0, 0, Integer.MAX_VALUE);
+
+		this.wanderingTraderWildcardTome = builder
+			.translation("config.mystictomes.wandering_trader_wildcard_tome")
+			.comment("If true, and if wildcard tomes are enabled, wandering traders will have a chance of selling one.")
+			.define("wanderingTraderWildcardTome", true);
 
 		builder.comment("Settings for combining items and Mystic Tomes together").translation("config.mystictomes.tome_item_settings").push("Tome-Item Combination Settings");
 
