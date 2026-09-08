@@ -54,14 +54,14 @@ public class MysticTomesConfig {
 			.comment("If true, and if wildcard tomes are enabled, wandering traders will have a chance of selling one.")
 			.define("wanderingTraderWildcardTome", true);
 
-		builder.comment("Settings for combining items and Mystic Tomes together").translation("config.mystictomes.tome_item_settings").push("Tome-Item Combination Settings");
-
 		this.wildcardTome = builder
 			.translation("config.mystictomes.wildcard_tome")
 			.comment("""
 				If true, Mystic Tomes without an enchantment defined via the 'minecraft:stored_enchantments' data component will be considered a 'wildcard tome'.
 				These tomes will upgrade any and all allowed enchantments on a tool or book.""")
 			.define("wildcardTome", true);
+
+		builder.comment("Settings for combining items and Mystic Tomes together").translation("config.mystictomes.tome_item_settings").push("Tome-Item Combination Settings");
 
 		this.upgradeCost = builder
 			.translation("config.mystictomes.upgrade_cost")
