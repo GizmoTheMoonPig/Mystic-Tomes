@@ -93,6 +93,38 @@ neoForge {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {
+	maven {
+		name 'Jared\'s Maven' // JEI
+		url 'https://maven.blamejared.com/'
+	}
+	maven {
+		name 'Shedaniel\'s Maven' //REI
+		url "https://maven.shedaniel.me"
+	}
+	maven {
+		name "TerraformersMC" //EMI
+		url "https://maven.terraformersmc.com/"
+	}
+	maven {
+		name 'Curseforge Maven'
+		url "https://www.cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
+}
+
+dependencies {
+	//make sure to only pick one of these when testing (switch others to compileOnly)
+	implementation "mezz.jei:jei-${project.minecraft_version}-neoforge:${project.jei_version}"
+//	compileOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${project.rei_version}"
+	compileOnly "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}"
+
+	implementation "curse.maven:advanced-core-info-1661923:8759953"
+	implementation "curse.maven:advanced-loot-info-1205426:8759960"
+}
+
 processResources {
     def ver = project.version
     filesMatching("META-INF/neoforge.mods.toml") {

@@ -29,9 +29,9 @@ public class AddTomeLootModifier extends LootModifier {
 			Codec.FLOAT.optionalFieldOf("chance", 1.0F).forGetter(o -> o.chance)))
 		.apply(inst, AddTomeLootModifier::new));
 
-	private final Optional<HolderSet<Enchantment>> options;
-	private final Optional<HolderSet<Enchantment>> exclusions;
-	private final float chance;
+	public final Optional<HolderSet<Enchantment>> options;
+	public final Optional<HolderSet<Enchantment>> exclusions;
+	public final float chance;
 
 	public AddTomeLootModifier(LootItemCondition[] conditions, float chance) {
 		this(conditions, Optional.empty(), Optional.empty(), chance);
@@ -46,6 +46,10 @@ public class AddTomeLootModifier extends LootModifier {
 		this.options = options;
 		this.exclusions = exclusions;
 		this.chance = chance;
+	}
+
+	public LootItemCondition[] getConditions() {
+		return this.conditions;
 	}
 
 	@Override
