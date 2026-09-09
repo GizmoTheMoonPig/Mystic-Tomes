@@ -1,6 +1,7 @@
 package com.gizmo.tomes;
 
 import com.gizmo.tomes.handler.AnvilHandler;
+import com.gizmo.tomes.handler.ClientLootPackHandler;
 import com.gizmo.tomes.handler.LootPackHandler;
 import com.gizmo.tomes.handler.TradeHandler;
 import com.mojang.serialization.MapCodec;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -49,7 +51,7 @@ public class MysticTomes {
 
 	public MysticTomes(IEventBus bus, ModContainer container, Dist dist) {
 		container.registerConfig(ModConfig.Type.COMMON, MysticTomesConfig.CONFIG_SPEC);
-		container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+		ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> ConfigurationScreen::new);
 
 		ITEMS.register(bus);
 		LOOT_MODIFIERS.register(bus);
@@ -72,7 +74,7 @@ public class MysticTomes {
 		bus.addListener(LootPackHandler::generateDefaultLootPack);
 
 		if (dist.isClient()) {
-			NeoForge.EVENT_BUS.addListener(LootPackHandler::autoSelectLootPack);
+			NeoForge.EVENT_BUS.addListener(ClientLootPackHandler::autoSelectLootPack);
 		}
 		NeoForge.EVENT_BUS.addListener(TradeHandler::addTradesToLibrarians);
 		NeoForge.EVENT_BUS.addListener(TradeHandler::addWildcardTomeToWanderingTrader);

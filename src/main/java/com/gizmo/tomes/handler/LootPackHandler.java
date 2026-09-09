@@ -2,12 +2,7 @@ package com.gizmo.tomes.handler;
 
 import com.gizmo.tomes.AddTomeLootModifier;
 import com.gizmo.tomes.MysticTomes;
-import com.gizmo.tomes.MysticTomesConfig;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.DetectedVersion;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.GenericMessageScreen;
-import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -16,51 +11,19 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
-import net.minecraft.server.packs.repository.Pack;
-import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.DataPackConfig;
-import net.minecraft.world.level.WorldDataConfiguration;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
 public class LootPackHandler {
-
-	public static void autoSelectLootPack(ScreenEvent.Opening event) {
-		if (!event.isCanceled() && event.getNewScreen() instanceof CreateWorldScreen screen && MysticTomesConfig.INSTANCE.defaultLootInjections.get()) {
-			if (event.getCurrentScreen() instanceof GenericMessageScreen message && message.getTitle().equals(Component.translatable("createWorld.preparing"))) {
-				//waow
-				screen.minecraft = Minecraft.getInstance();
-				var repo = screen.getDataPackSelectionSettings(screen.getUiState().getSettings().dataConfiguration());
-				if (repo != null) {
-					PackRepository packRepo = repo.getSecond();
-					List<Pack> selected = new ArrayList<>(packRepo.getSelectedPacks());
-					packRepo.getAvailablePacks().forEach(pack -> {
-						if (pack.getTitle().getString().equals("Default Loot Injections")) {
-							selected.add(pack);
-						}
-					});
-					packRepo.setSelected(selected.stream().map(Pack::getId).toList());
-
-					List<String> enabled = ImmutableList.copyOf(packRepo.getSelectedIds());
-					List<String> disabled = packRepo.getAvailableIds().stream().filter(id -> !enabled.contains(id)).collect(ImmutableList.toImmutableList());
-					WorldDataConfiguration worlddataconfiguration = new WorldDataConfiguration(new DataPackConfig(enabled, disabled), screen.getUiState().getSettings().dataConfiguration().enabledFeatures());
-					screen.applyNewPackConfig(packRepo, worlddataconfiguration, configuration -> {});
-				}
-			}
-		}
-	}
 
 	public static void generateDefaultLootPack(GatherDataEvent event) {
 		DataGenerator.PackGenerator loot = event.getGenerator().getPackGenerator(true, MysticTomes.MODID, "datapack/default_loot");
