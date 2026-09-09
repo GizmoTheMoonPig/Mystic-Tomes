@@ -37,7 +37,7 @@ public class TradeHandler {
 
 	public static void addWildcardTomeToWanderingTrader(WandererTradesEvent event) {
 		if (MysticTomesConfig.INSTANCE.wildcardTome.get() && MysticTomesConfig.INSTANCE.wanderingTraderWildcardTome.get()) {
-			event.getRareTrades().add(new VillagerTrades.ItemsForEmeralds(MysticTomes.MYSTIC_TOME.get(), 64, 1, 5));
+			event.getRareTrades().add(new VillagerTrades.ItemsForEmeralds(MysticTomes.MYSTIC_TOME.get(), 64, 1, 1, 5));
 		}
 	}
 
